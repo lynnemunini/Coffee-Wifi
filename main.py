@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired, URL
 import csv
 
@@ -15,9 +15,9 @@ class CafeForm(FlaskForm):
     location = StringField('Cafe Location on Google Maps(URL)', validators=[DataRequired(), URL()])
     opening = StringField('Opening Time (e.g 8 AM)', validators=[DataRequired()])
     closing = StringField('Closing Time (e.g 8 PM)', validators=[DataRequired()])
-    rating = StringField('Coffee Rating', validators=[DataRequired()])
-    wifi = StringField('Wifi Strength Rating', validators=[DataRequired()])
-    power = StringField('Power Socket Availability', validators=[DataRequired()])
+    rating = SelectField('Coffee Rating', validators=[DataRequired()], choices=[('☕☕☕☕☕'), ('☕☕☕☕'), ('☕☕☕'), ('☕☕'), ('☕'), ('✘')])
+    wifi = SelectField('Wifi Strength Rating', validators=[DataRequired()], choices=[('💪💪💪💪💪'), ('💪💪💪💪'), ('💪💪💪'), ('💪💪'), ('💪'), ('✘')])
+    power = SelectField('Power Socket Availability', validators=[DataRequired()], choices=[('🔌🔌🔌🔌🔌'), ('🔌🔌🔌🔌'), ('🔌🔌🔌'), ('🔌🔌'), ('🔌'), ('✘')])
     submit = SubmitField('Submit')
 
 # Exercise:
